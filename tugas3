@@ -1,9 +1,6 @@
 const http = require("http");
 const url = require("url");
 
-const hostname = '127.0.0.1';
-const port = '4003';
-
 const server = http.createServer((request, response) => {
     const parsedURL = url.parse(request.url,true);
     console.log(parsedURL);
@@ -83,7 +80,7 @@ const server = http.createServer((request, response) => {
   }
 });
 
-server.listen(port, hostname, () => {
+server.listen(4003, () => {
     // Console will print the message
-    console.log('Server running at ${hostname} ${port}');
+    console.log('Server running at http://152.67.102.167:4003');
  });
