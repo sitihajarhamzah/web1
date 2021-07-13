@@ -1,5 +1,7 @@
 const http = require('http');
 
+const hostname ='127.0.0.1';
+const port = '4002';
 const server = http.createServer((request, response) =>{
     console.log(request.url);
     console.log(request.headers);
@@ -11,11 +13,11 @@ const server = http.createServer((request, response) =>{
         response.setHeader('Content-Type', 'text/html');
         response.write(`Bahasa = ${request.headers['accept-language']}<br><br>`);
         //response.write(`request : ${request.headers}`);
-        response.write('Petshop <br><br>');
-        response.write("<a href='/Makanan Hewan'>Menu makanan</a><br>");
+        response.write('<center><h1>Pet shop</h1></center><br><br>');
+        response.write("<a href='/Menu'>Menu Makanan</a><br>");
         response.write("<a href='/Kandang'>Kandang</a><br>");
         response.end();
-    }else if(request.url ==='/Makanan Hewan' ) {
+    }else if(request.url ==='/Menu' ) {
         response.statusCode = 200;
         response.setHeader('Content-Type', 'text/html');
         response.write('Ini stok makanan ');
@@ -35,7 +37,7 @@ const server = http.createServer((request, response) =>{
 
 });
 
-server.listen(4002, () =>{
-    console.log(`sever listen http://http://152.67.102.167:4002`);
-    
+server.listen(port,hostname,() => {
+    // Console will print the message
+	console.log('Server running at  ${hostname} ${port}' )    
 });
