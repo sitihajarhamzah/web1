@@ -36,6 +36,6 @@ const server = http.createServer((request, response) =>{
 });
 
 server.listen(4002, () =>{
-    console.log(`sever listen http://http://152.67.102.167:4002`);
+    console.log(`sever listen http://152.67.102.167:4002`);
     
 });
