@@ -1,0 +1,89 @@
+const http = require("http");
+const url = require("url");
+
+const hostname = '127.0.0.1';
+const port = '4003';
+
+const server = http.createServer((request, response) => {
+    const parsedURL = url.parse(request.url,true);
+    console.log(parsedURL);
+ 
+   if (parsedURL.pathname === '/') {
+      response.statusCode = 200;
+      response.setHeader('Content-Type', 'text/html');
+      response.write(`<center><h1> Data Mahasiswa </h1></center>`)
+      response.write(`
+      <ol>
+      <li><a href="profil?nama=Siti Hajar Hamzah&nim=105841103419&kelas=4A&Fakultas=Teknik&jurusan=Informatika&jk=Perempuan&asal=Gowa&agama=Islam">Siti Hajar Hamzah</a></li>
+      <li><a href="profil?nama=Astri Sovianty&nim=105841101219&kelas=4A&Fakultas=Teknik&jurusan=Informatika&jk=Perempuan&asal=Palopo&agama=Islam">Astri Sovianty</a></li>
+      <li><a href="profil?nama=Hildayati&nim=105841101419&kelas=4A&Fakultas=Teknik&jurusan=Informatika&jk=Perempuan&asal=Wakatobi&agama=Islam">Hildayati</a></li>
+      <li><a href="profil?nama=Marlina&nim=105841102419&kelas=4A&Fakultas=Teknik&jurusan=Informatika&jk=Perempuan&asal=JeknePonto&agama=Islam">Marlina</a></li>
+      <li><a href="profil?nama=Firdha Fauziah Amir&nim=105841102819&kelas=4A&Fakultas=Teknik&jurusan=Informatika&jk=Perempuan&asal=_&agama=Islam">Firdha Fauziah Amir</a></li>
+      <li><a href="profil?nama=Muhtamirah&nim=105841103019&kelas=4A&Fakultas=Teknik&jurusan=Informatika&jk=Perempuan&asal=Gowa&agama=Islam">Muhtamirah</a></li>
+      <li><a href="profil?nama=Amria Ancong Pate&nim=105841103319&kelas=4A&Fakultas=Teknik&jurusan=Informatika&jk=Perempuan&asal=Manado&agama=Islam">Amria Ancong Pate</a></li>
+      <li><a href="profil?nama=Muh Zubir Pradadang&nim=105841103119&kelas=4A&Fakultas=Teknik&jurusan=Informatika&jk=Laki-Laki&asal=Gowa&agama=Islam">Muh Zubir Pradadang</a></li>
+      <li><a href="profil?nama=Andi Fatri Lestary Burhan&nim=105841102619&kelas=4A&Fakultas=Teknik&jurusan=Informatika&jk=Perempuan&asal=Gowa&agama=Islam">Andi Fatri Lestary Burhan</a></li>
+      <li><a href="profil?nama=Syariful Mujaddiq&nim=105841103219&kelas=4A&Fakultas=Teknik&jurusan=Informatika&jk=Perempuan&asal=Gowa&agama=Islam">Syariful Mujaddiq</a></li>
+      </ol>`);
+      response.end();
+  }else if (parsedURL.pathname === '/profil') {
+      response.statusCode = 200;
+      response.setHeader('Content-Type', 'text/html');
+      response.write(`
+      <body>
+  <h1 align="center">BIODATA DIRI</h1>
+<table width="745" border="1" cellspacing="0" cellpadding="5" align="center">
+<tr align="center" bgcolor="#00FFFF">
+<td width="174">DATA DIRI</td>
+<td width="353">KETERANGAN</td>
+<td width="232">FOTO</td>
+</tr>
+<tr bgcolor="#F0F8FF">
+<td>Nama</td>
+<td>${parsedURL.query.nama}</td>
+<td rowspan="10" align="center"><img src="https://simak.unismuh.ac.id/upload/mahasiswa/${parsedURL.query.nim}.jpg"></td>
+</tr>
+<tr bgcolor="#F0F8FF">
+<td>NIM</td>
+<td>${parsedURL.query.nim}</td>
+</tr>
+<tr bgcolor="#F0F8FF">
+<td>Jurusan</td>
+<td>${parsedURL.query.jurusan}</td>
+</tr>
+<tr bgcolor="#F0F8FF">
+<td>Kelas</td>
+<td>${parsedURL.query.kelas}</td>
+</tr>
+<tr bgcolor="#F0F8FF">
+<td>Fakultas</td>
+<td>${parsedURL.query.Fakultas}</td>
+</tr>
+<tr bgcolor="#F0F8FF">
+<td>Jenis Kelamin</td>
+<td>${parsedURL.query.jk}</td>
+</tr>
+<tr bgcolor="#F0F8FF">
+<td>Daerah Asal</td>
+<td>${parsedURL.query.asal}</td>
+</tr>
+<tr bgcolor="#F0F8FF">
+<td>Agama</td>
+<td>${parsedURL.query.agama}</td>
+</tr>
+<tr>
+</table>
+ `);
+      response.end();
+  }else {
+   response.statusCode = 404;
+   response.setHeader('Content-Type', 'text/html');
+   response.write('halaman tdk di temukan');
+   response.end();
+  }
+});
+
+server.listen(port, hostname, () => {
+    // Console will print the message
+    console.log('Server running at ${hostname} ${port}');
+ });
