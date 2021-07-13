@@ -1,7 +1,5 @@
 const http = require('http');
 
-const hostname ='127.0.0.1';
-const port = '4002';
 const server = http.createServer((request, response) =>{
     console.log(request.url);
     console.log(request.headers);
@@ -37,7 +35,7 @@ const server = http.createServer((request, response) =>{
 
 });
 
-server.listen(port,hostname,() => {
-    // Console will print the message
-	console.log('Server running at  ${hostname} ${port}' )    
+server.listen(4002, () =>{
+    console.log(`sever listen http://http://152.67.102.167:4002`);
+    
 });
